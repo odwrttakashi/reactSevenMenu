@@ -1,0 +1,38 @@
+{
+    "menu": {
+        "sasimori": "Sashimi Platter",
+        "taisasi": "Sea Bream Sashimi",
+        "gomakanpati": "Sesame Amberjack",
+        "sa-mon": "Salmon",
+        "edamame": "Edamame",
+        "onion": "Onion Slices",
+        "kyu-rigoma": "Cucumber with Sesame Salt",
+        "ikanosiokara": "Salted Squid",
+        "kimuti": "Kimchi",
+        "hotaruika": "Firefly Squid Pickled in Soy Sauce",
+        "tyanzya": "Chanja (Spicy Cod Entrails)",
+        "eihire": "Grilled Stingray Fin",
+        "tomasura": "Tomato Slices",
+        "kyuuriume": "Cucumber with Plum Wasabi",
+        "kuriti-wasabi": "Cream Cheese with Wasabi Soy Sauce",
+        "kanimiso": "Crab Miso",
+        "takowasa": "Octopus with Wasabi",
+        "taiwata": "Sea Bream Entrails",
+        "yamaimotansaku": "Sliced Yam"
+    },
+    "categories": {
+        "sasimi": "Sashimi",
+        "small_plate": "Small Plates",
+        "Grilled": "Grilled",
+        "Stewed_Dishes": "Stewed Dishes",
+        "Sweets": "Dessert"
+    },
+    "buttons": {
+        "order": "Order"
+    },
+    "order": {
+        "title": "Order List",
+        "quantity": "quantity",
+        "empty": "No orders available."
+    }
+}

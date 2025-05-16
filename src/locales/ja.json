@@ -1,0 +1,40 @@
+{
+    "menu": {
+        "sasimori": "お刺身盛合せ",
+        "taisasi": "たい刺身",
+        "gomakanpati": "ごまかんぱち",
+        "sa-mon": "サーモン",
+        "edamame": "枝豆",
+        "onion": "オニオンスライス",
+        "kyu-rigoma": "胡瓜の胡麻塩",
+        "ikanosiokara": "イカの塩辛",
+        "kimuti": "キムチ",
+        "hotaruika": "蛍烏賊の沖漬け",
+        "tyanzya": "チャンジャ",
+        "eihire": "エイヒレ",
+        "tomasura": "トマトスライス",
+        "kyuuriume": "胡瓜の梅わさび",
+        "kuriti-wasabi": "クリームチーズ山葵醤油",
+        "kanimiso": "かにみそ",
+        "takowasa": "蛸わさび",
+        "taiwata": "鯛わた",
+        "yamaimotansaku": "山芋短冊"
+    },
+    "categories": {
+        "sasimi": "刺身 ",
+        "small_plate": "おつまみ",
+        "Grilled": "焼き物",
+        "Stewed_Dishes": "煮物",
+        "Sweets": "デザート"
+    },
+    "buttons": {
+        "order": "オーダー"
+    },
+    "order": {
+        "receipt": "ご注文",
+        "quantity": "数量",
+        "quantityUnit": "個",
+        "empty": "オーダーがありません。",
+        "item": "品名"
+    }
+}

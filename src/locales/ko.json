@@ -1,0 +1,38 @@
+{
+    "menu": {
+        "sasimori": "사시미 모둠",
+        "taisasi": "도미 사시미",
+        "gomakanpati": "참깨 방어",
+        "sa-mon": "연어",
+        "edamame": "에다마메",
+        "onion": "양파 슬라이스",
+        "kyu-rigoma": "참깨 소금 오이",
+        "ikanosiokara": "오징어 젓갈",
+        "kimuti": "김치",
+        "hotaruika": "반딧불 오징어 간장 절임",
+        "tyanzya": "창자 (매운 대구 내장)",
+        "eihire": "구운 가오리 지느러미",
+        "tomasura": "토마토 슬라이스",
+        "kyuuriume": "매실 와사비 오이",
+        "kuriti-wasabi": "크림 치즈 와사비 간장",
+        "kanimiso": "게 된장",
+        "takowasa": "문어 와사비",
+        "taiwata": "도미 내장",
+        "yamaimotansaku": "얇게 썬 마"
+    },
+    "categories": {
+        "sasimi": "사시미",
+        "small_plate": "안주",
+        "Grilled": "구이",
+        "Stewed_Dishes": "조림",
+        "Sweets": "디저트"
+    },
+    "buttons": {
+        "order": "주문"
+    },
+    "order": {
+        "title": "주문 목록",
+        "quantity": "수량",
+        "empty": "주문이 없습니다."
+    }
+}
