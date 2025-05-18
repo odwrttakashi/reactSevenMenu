@@ -10,6 +10,13 @@ const CategoryGrid = styled.div`
     grid-template-columns: repeat(4, 1fr); /* 4列 */
     gap: 10px; /* ボタン間の間隔 */
     margin-bottom: 20px;
+    position: fixed; /* 固定表示 */
+    top: 0; /* 画面上部に配置 */
+    left: 0;
+    right: 0;
+    background-color: white; /* 背景色を設定 */
+    z-index: 1000; /* 他の要素より前面に表示 */
+    padding: 10px; /* 内側の余白を追加 */
 `;
 
 const CategoryButton = styled.button`
@@ -29,11 +36,19 @@ const CategoryButton = styled.button`
     }
 `;
 
+const FixedOrderButton = styled.div`
+    position: fixed; /* 画面に固定 */
+    bottom: 20px; /* 画面下からの距離 */
+    right: 20px; /* 画面右からの距離 */
+    z-index: 1000; /* 他の要素より前面に表示 */
+`;
+
+
 const Menu = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
-    const [selectedCategory, setSelectedCategory] = useState('sasimi'); // 初期ジャンルを設定
+    const [selectedCategory, setSelectedCategory] = useState('Sasimi'); // 初期ジャンルを設定
     const [menuCounts, setMenuCounts] = useState({}); // メニューごとのカウントを管理
 
     useEffect(() => {
@@ -64,14 +79,22 @@ const Menu = () => {
 
     // オーダーボタンのクリック時にリストページに遷移
     const handleOrder = () => {
-        navigate('/order', { state: { menuCounts, menuData } });
+        navigate('/order', { state: { menuCounts, menuData, lang: i18n.language } }); // 言語をstateに追加
     };
 
     return (
-        <div>
+        <div
+            style={{
+                backgroundImage: `url('/images/en.png')`,
+                backgroundSize: 'cover', // 画像を全体に拡大
+                backgroundPosition: 'center', // 画像を中央に配置
+                minHeight: '100vh', // ページ全体をカバー
+
+            }}
+        >
             {/* ジャンル選択ボタン */}
             <CategoryGrid>
-                {['sasi', 'small_plate', 'Grilled', 'Stewed_Dishes', 'Sweets'].map(category => (
+                {['Sasimi', 'Salad', 'Small_plate', 'Create', 'Grilled', 'Fried', 'Rice&Suup', 'Sweets'].map(category => (
                     <CategoryButton
                         key={category}
                         isSelected={selectedCategory === category}
@@ -83,7 +106,7 @@ const Menu = () => {
             </CategoryGrid>
 
             {/* メニュー表示 */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', marginTop: '100px' }}>
                 {filteredMenu.map(item => (
                     <div key={item.id} style={{ position: 'relative' }}>
                         <MenuItem
@@ -99,8 +122,8 @@ const Menu = () => {
                     </div>
                 ))}
             </div>
-            {/* オーダーボタン */}
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+            {/* 固定されたオーダーボタン */}
+            <FixedOrderButton>
                 <button
                     onClick={handleOrder}
                     style={{
@@ -114,7 +137,7 @@ const Menu = () => {
                 >
                     {t('buttons.order')} {/* 翻訳キーを使用 */}
                 </button>
-            </div>
+            </FixedOrderButton>
         </div>
     );
 };

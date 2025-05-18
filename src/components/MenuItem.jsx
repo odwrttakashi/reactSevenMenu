@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+    background-color: rgb(240, 226, 203,0.8); /* 半透明の白色 */
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 12px;

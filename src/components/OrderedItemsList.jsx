@@ -1,11 +1,20 @@
-import { changeLanguage } from 'i18next';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    margin-bottom: 20px;
+margin-top: 40px;    
+margin-bottom: 20px;
     padding: 10px;
+   background-color: rgb(240, 226, 203,0.8); /* 半透明の白色 */
+    border: 3px solid #000;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     
  
 `;
@@ -41,24 +50,24 @@ const TableCell = styled.td`
 
 const OrderedItemsList = ({ orderedItems, menuCounts }) => {
 
-    const { t, i18n } = useTranslation();
-    i18n.changeLanguage('ja');
+    const { t: tOrder } = useTranslation('translation', { lng: 'ja' }); // 'ja' 言語を設定
+
     if (orderedItems.length === 0) return null;
 
     return (
         <Container>
-            <Title>{t('order.receipt')}</Title>
+            <Title>{tOrder('order.receipt')}</Title> {/* オーダーページ専用の翻訳関数を使用 */}
             <Table>
                 <thead>
                     <tr>
-                        <TableHeader>{t('order.item')}</TableHeader>
-                        <TableHeader>{t('order.quantity')}</TableHeader>
+                        <TableHeader>{tOrder('order.item')}</TableHeader> {/* オーダーページ専用の翻訳関数を使用 */}
+                        <TableHeader>{tOrder('order.quantity')}</TableHeader> {/* オーダーページ専用の翻訳関数を使用 */}
                     </tr>
                 </thead>
                 <tbody>
                     {orderedItems.map(item => (
                         <TableRow key={item.id}>
-                            <TableCell>{t('menu.' + item.nameKey)}</TableCell>
+                            <TableCell>{tOrder('menu.' + item.nameKey)}</TableCell> {/* オーダーページ専用の翻訳関数を使用 */}
                             <TableCell>{menuCounts[item.id]}</TableCell>
                         </TableRow>
                     ))}

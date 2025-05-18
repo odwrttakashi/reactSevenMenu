@@ -7,7 +7,7 @@ const CardsContainer = styled.div`
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    background-color: red;
+   
 `;
 
 const Card = styled.div`
@@ -25,7 +25,8 @@ const CardImage = styled.img`
 `;
 
 const OrderedItemsCards = ({ orderedItems, menuCounts }) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    console.log(i18n);
 
     return (
         <CardsContainer>
