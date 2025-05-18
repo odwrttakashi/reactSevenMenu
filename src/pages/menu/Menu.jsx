@@ -94,7 +94,7 @@ const Menu = () => {
         >
             {/* ジャンル選択ボタン */}
             <CategoryGrid>
-                {['Sasimi', 'Salad', 'Small_plate', 'Create', 'Grilled', 'Fried', 'Rice&Suup', 'Sweets'].map(category => (
+                {['Sasimi', 'Small_plate', 'Salada', 'Create', 'Grilled', 'Fried', 'Rice/Soup', 'Sweets'].map(category => (
                     <CategoryButton
                         key={category}
                         isSelected={selectedCategory === category}
@@ -106,7 +106,7 @@ const Menu = () => {
             </CategoryGrid>
 
             {/* メニュー表示 */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', marginTop: '100px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', marginTop: '100px', padding: '20px' }}>
                 {filteredMenu.map(item => (
                     <div key={item.id} style={{ position: 'relative' }}>
                         <MenuItem

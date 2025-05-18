@@ -4,20 +4,19 @@ import { useTranslation } from 'react-i18next';
 import OrderedItemsList from '../../components/OrderedItemsList';
 import OrderedItemsCards from '../../components/OrderedItemsCards';
 
-
-import styled from 'styled-components'; // styled-componentsのインポート
+import styled from 'styled-components';
 
 const Container = styled.div`
-    
     margin: 0px;
     padding: 0px;
-    height: 100vh; /* 高さを100vhに設定 */
+    height: 100%; /* 高さを100%に設定 */
     background-image: url('/images/en.png'); /* 背景画像のパスを指定 */
     background-size: cover; /* 画像をコンテナ全体に拡大縮小 */
     background-position: center; /* 画像を中央に配置 */
     background-repeat: no-repeat; /* 画像を繰り返さない */
-    border : 5px solid #000; 
-    `;
+    border: 5px solid #000;
+`;
+
 const Order = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
@@ -35,21 +34,22 @@ const Order = () => {
     };
 
     return (
-        <Container>
+        <>
 
-            {/* 伝票のようなメニュー名リスト */}
-            {renderOrderedItemsList()}
+            <Container>
 
-            {/* オーダーのカード表示 */}
-            {orderedItems.length > 0 ? (
-                <OrderedItemsCards orderedItems={orderedItems} menuCounts={menuCounts} />
-            ) : (
-                <p>{t('order.empty')}</p>
-            )}
+                {/* 伝票のようなメニュー名リスト */}
+                {renderOrderedItemsList()}
 
-        </Container>
+                {/* オーダーのカード表示 */}
+                {orderedItems.length > 0 ? (
+                    <OrderedItemsCards orderedItems={orderedItems} menuCounts={menuCounts} />
+                ) : (
+                    <p>{t('order.empty')}</p>
+                )}
 
-
+            </Container>
+        </>
     );
 };
 
