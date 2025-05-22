@@ -37,7 +37,8 @@ const Price = styled.p`
     margin: 0;
     padding: 0;
     font-size: 14px;
-    color: #555;
+    color: #000;
+
 `;
 
 const MenuItem = ({ name, image, price }) => {

@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const Container = styled.div`
     margin: 0px;
     padding: 0px;
-    height: 100%; /* 高さを100%に設定 */
+    height: 100vh; /* 高さを100%に設定 */
     background-image: url('/images/en.png');  背景画像のパスを指定 
     background-size: cover; /* 画像をコンテナ全体に拡大縮小 */
     background-position: center; /* 画像を中央に配置 */

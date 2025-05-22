@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const Container = styled.div`
-margin-top: 40px;    
+margin-top: 0px;    
 margin-bottom: 20px;
     padding: 10px;
    background-color: rgb(240, 226, 203,0.8); /* 半透明の白色 */

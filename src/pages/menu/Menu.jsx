@@ -5,41 +5,56 @@ import MenuItem from '../../components/MenuItem';
 import menuData from '../../data/menuData';
 import styled from 'styled-components';
 
-
 const CategoryGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4列 */
-    gap: 10px; /* ボタン間の間隔 */
-    margin-top: 8px; /* 配置を少し下に下げる */
-    position: fixed; /* 固定表示 */
-    top: 80px; /* 画面上部からの距離を調整 */
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 10px;
+    margin-top: 8px;
+    position: fixed;
+    top: 67px;
     left: 0;
     right: 0;
-    background-color: white; /* 背景色を設定 */
-    z-index: 10; /* 他の要素より前面に表示 */
-    padding: 10px; /* 内側の余白を追加 */
-    background-image: url('/images/category/tutikabe.jpg'); /* ボタンに画像を設定 */
-    background-size: cover; /* 画像をボタン全体に拡大縮小 */
-    background-position: center; /* 画像を中央に配置 */
+    background-color: white;
+    z-index: 10;
+    padding: 4px 10px;
+    background-image: url('/images/category/catebk1.png');
+    background-size: cover;
+    background-position: center;
+    border-top: 2.2px solid #000; /* 上辺だけ黒の枠を追加 */
+    border-bottom: 2.2px solid #000; /* 上辺だけ黒の枠を追加 */
+    
+    /* スクロールバー非表示（主要ブラウザ対応） */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE, Edge */
+    &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+    }
+        
 `;
-
 const CategoryButton = styled.button`
-    padding: 10px 20px;
-    background-color: ${({ isSelected }) => (isSelected ? '#B197FC' : '#fff')}; /* もとf0f0f0 */
-    color: ${({ isSelected }) => (isSelected ? 'white' : 'black')};
+    padding: 10px 40px;
+    background: ${({ isSelected }) => (isSelected ? 'rgba(20,20,20,0.85)' : 'rgba(255, 255, 255, 0.1)')}; /* 選択時はすみくろ */
+    color: ${({ isSelected }) => (isSelected ? '#fff' : '#222')};
     border: none;
-    border-radius: 5px;
+    border-radius: 0px;
     cursor: pointer;
     font-size: 16px;
     text-align: center;
-    white-space: nowrap;
-    transition: background-color 0.3s ease;
-    opacity: 0.8; /* 初期の透明度 */
+    backdrop-filter: blur(6px); /* ブラー効果 */
+    -webkit-backdrop-filter: blur(6px); /* Safari対応 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.0.8);
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+
+    opacity: 0.85; /* 少しだけ透過 */
     &:hover {
-        background-color: ${({ isSelected }) => (isSelected ? '#9c86e2' : '#e0e0e0')};
+        background: rgba(255,255,255,0.25);
+        color: #000;
     }
 `;
-
 const FixedOrderButton = styled.div`
     position: fixed; /* 画面に固定 */
     bottom: 20px; /* 画面下からの距離 */
@@ -47,8 +62,8 @@ const FixedOrderButton = styled.div`
     z-index: 1000; /* 他の要素より前面に表示 */
 
     button {
-        padding: 40px 80px; /* ボタンの内側余白を200%に拡大 */
-        font-size: 36px; /* フォントサイズを200%に拡大 */
+        padding: 20px 40px; /* ボタンの内側余白を200%に拡大 */
+        font-size: 20px; /* フォントサイズを200%に拡大 */
         background-color: #4CAF50; /* 背景色 */
         color: white; /* テキストの色 */
         border: none; /* ボーダーを削除 */
@@ -66,7 +81,7 @@ const HomeButton = styled.button`
     left: 50%; /* 水平方向の中央に配置 */
     transform: translateX(-50%); /* 中央揃え */
     width: 60px; /* ボタンの幅を小さくする */
-    height: 80px; /* ボタンの高さを小さくする */
+    height: 60px; /* ボタンの高さを小さくする */
     background-image: url('/images/button/homebutton.png'); /* ボタンに画像を設定 */
     background-size: 60px 60px; /* 画像のサイズを調整 */
     background-repeat: no-repeat; /* 画像を繰り返さない */
@@ -93,7 +108,9 @@ const HomeButton = styled.button`
 `;
 
 const MenuContainer = styled.div`
+    
     background-image: url('/images/en.png'); /* 背景画像を設定 */
+    
     background-size: cover; /* 画像を全体に拡大 */
     background-position: top; /* 画像をページの最上部に配置 */
     min-height: 100vh; /* ページ全体をカバー */
@@ -108,10 +125,31 @@ const WhiteOverlay = styled.div`
     left: 0; /* 画面左からの距離 */
     width: 100%; /* 画面全幅をカバー */
     height: 110px; /* カテゴリーボックスの上部を覆う高さ */
+    
     background-color: white; /* 背景色を白に設定 */
     z-index: 1; /* カテゴリーボックスより前面に表示 */
 `;
 
+const LanguageDisplay = styled.div`
+    position: fixed;
+    top: 55px;
+    right: 16px;
+    z-index: 1200;
+    color: #888;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.9;
+    pointer-events: none;
+    user-select: none;
+`;
+const MenuPositionStart = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 130px; /* カテゴリーボックスの高さ＋余白 */
+    padding: 20px;
+`;
 const Menu = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
@@ -152,6 +190,9 @@ const Menu = () => {
 
     return (
         <MenuContainer>
+            <LanguageDisplay>
+                [{i18n.language.toUpperCase()}]
+            </LanguageDisplay>
             {/* 上部の白色オーバーレイ */}
             <WhiteOverlay />
 
@@ -169,16 +210,7 @@ const Menu = () => {
             </CategoryGrid>
 
             {/* メニュー表示 */}
-            <div
-                style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '20px',
-                    justifyContent: 'center',
-                    marginTop: '200px', // カテゴリーボックスの高さ（80px）＋余白（60px）
-                    padding: '20px',
-                }}
-            >
+            <MenuPositionStart>
                 {filteredMenu.map(item => (
                     <div key={item.id} style={{ position: 'relative' }}>
                         <MenuItem
@@ -193,7 +225,7 @@ const Menu = () => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </MenuPositionStart>
 
             {/* 固定されたオーダーボタン */}
             <FixedOrderButton>
@@ -213,9 +245,7 @@ const Menu = () => {
             </FixedOrderButton>
 
             {/* ホーム画面へ遷移するボタン */}
-            <HomeButton onClick={() => navigate('/')}>
-                HOME
-            </HomeButton>
+            <HomeButton onClick={() => navigate('/')}></HomeButton>
         </MenuContainer>
     );
 };
