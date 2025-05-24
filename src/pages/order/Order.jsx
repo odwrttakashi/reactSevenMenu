@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import OrderedItemsList from '../../components/OrderedItemsList';
 import OrderedItemsCards from '../../components/OrderedItemsCards';
-
+import Footer from '../../components/Footer';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -49,6 +49,7 @@ const Order = () => {
                 )}
 
             </Container>
+            <Footer />
         </>
     );
 };

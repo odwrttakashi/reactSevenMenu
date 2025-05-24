@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import MenuItem from '../../components/MenuItem';
 import menuData from '../../data/menuData';
 import styled from 'styled-components';
-
+import Footer from '../../components/Footer';
 const CategoryGrid = styled.div`
     display: flex;
     flex-direction: row;
@@ -57,14 +57,14 @@ const CategoryButton = styled.button`
 `;
 const FixedOrderButton = styled.div`
     position: fixed; /* 画面に固定 */
-    bottom: 20px; /* 画面下からの距離 */
+    top: 20px; /* 画面下からの距離 */
     right: 20px; /* 画面右からの距離 */
     z-index: 1000; /* 他の要素より前面に表示 */
 
     button {
-        padding: 20px 40px; /* ボタンの内側余白を200%に拡大 */
+        padding: 10px 20px; /* ボタンのパディング */
         font-size: 20px; /* フォントサイズを200%に拡大 */
-        background-color: #4CAF50; /* 背景色 */
+
         color: white; /* テキストの色 */
         border: none; /* ボーダーを削除 */
         border-radius: 20px; /* ボタンを角丸にする */
@@ -78,7 +78,7 @@ const FixedOrderButton = styled.div`
 const HomeButton = styled.button`
     position: fixed; /* 画面に固定 */
     top: 10px; /* 画面上部からの距離 */
-    left: 50%; /* 水平方向の中央に配置 */
+    left: 7%; /* 水平方向の中央に配置 */
     transform: translateX(-50%); /* 中央揃え */
     width: 60px; /* ボタンの幅を小さくする */
     height: 60px; /* ボタンの高さを小さくする */
@@ -150,6 +150,24 @@ const MenuPositionStart = styled.div`
     margin-top: 130px; /* カテゴリーボックスの高さ＋余白 */
     padding: 20px;
 `;
+const CountBadge = styled.div`
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(44,44,44,0.85);
+    color: #fff;
+    border-radius: 50%;
+    min-width: 28px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+`;
+
 const Menu = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
@@ -213,16 +231,17 @@ const Menu = () => {
             <MenuPositionStart>
                 {filteredMenu.map(item => (
                     <div key={item.id} style={{ position: 'relative' }}>
+                        {(menuCounts[item.id] || 0) > 0 && (
+                            <CountBadge>{menuCounts[item.id]}</CountBadge>
+                        )}
                         <MenuItem
                             name={t('menu.' + item.nameKey)}
                             price={item.price}
                             image={item.image}
+                            count={menuCounts[item.id] || 0}
+                            onIncrement={() => incrementCount(item.id)}
+                            onDecrement={() => decrementCount(item.id)}
                         />
-                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                            <button onClick={() => decrementCount(item.id)}>-</button>
-                            <span style={{ margin: '0 10px' }}>{menuCounts[item.id] || 0}</span>
-                            <button onClick={() => incrementCount(item.id)}>+</button>
-                        </div>
                     </div>
                 ))}
             </MenuPositionStart>
@@ -246,7 +265,10 @@ const Menu = () => {
 
             {/* ホーム画面へ遷移するボタン */}
             <HomeButton onClick={() => navigate('/')}></HomeButton>
+
+            <Footer />
         </MenuContainer>
+
     );
 };
 
