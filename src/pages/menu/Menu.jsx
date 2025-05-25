@@ -153,16 +153,16 @@ const MenuPositionStart = styled.div`
 const CountBadge = styled.div`
     position: absolute;
     top: 8px;
-    right: 8px;
-    background: rgba(44,44,44,0.85);
-    color: #fff;
+    right: 5px;
+    background: rgba(252, 252, 252, 0.85);
+    color: #333;
     border-radius: 50%;
     min-width: 28px;
-    height: 30px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
     z-index: 2;
     box-shadow: 0 2px 6px rgba(0,0,0,0.18);
@@ -260,7 +260,7 @@ const Menu = () => {
                         cursor: 'pointer',
                     }}
                 >
-                    {t('buttons.order')}
+                    🛒{t('buttons.order')}
                 </button>
             </FixedOrderButton>
 
