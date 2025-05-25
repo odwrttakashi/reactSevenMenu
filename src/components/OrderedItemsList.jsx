@@ -3,18 +3,18 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 const Container = styled.div`
-margin-top: 0px;    
-margin-bottom: 20px;
+    margin-top: 0px;    
+    margin-bottom: 20px;
     padding: 10px;
-   background-color: rgb(240, 226, 203,0.8); /* 半透明の白色 */
+    background-color: rgb(240, 226, 203,0.8); /* 半透明の白色 */
     border: 3px solid #000;
-    border-radius: 8px;
+    border-radius: 3px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     
  
 `;

@@ -95,6 +95,7 @@
         "quantity": "数量",
         "quantityUnit": "個",
         "empty": "オーダーがありません。",
-        "item": "品名"
+        "item": "品名",
+        "back": "ﾒﾆｭｰに戻る"
     }
 }

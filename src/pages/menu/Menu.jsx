@@ -173,7 +173,11 @@ const Menu = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = useState('Sasimi'); // 初期ジャンルを設定
-    const [menuCounts, setMenuCounts] = useState({}); // メニューごとのカウントを管理
+    // stateから初期値を取得
+    const initialCounts = location.state?.menuCounts || {};
+    const initialMenuData = location.state?.menuData || menuData;
+
+    const [menuCounts, setMenuCounts] = useState(initialCounts);
 
     useEffect(() => {
         // クエリパラメータから言語を取得し、必ず言語を切り替える
@@ -183,7 +187,7 @@ const Menu = () => {
     }, [location, i18n]);
 
     // 選択されたジャンルのメニューをフィルタリング
-    const filteredMenu = menuData.filter(item => item.category === selectedCategory);
+    const filteredMenu = initialMenuData.filter(item => item.category === selectedCategory);
 
     // カウントを増やす
     const incrementCount = (id) => {

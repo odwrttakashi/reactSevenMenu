@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import OrderedItemsList from '../../components/OrderedItemsList';
 import OrderedItemsCards from '../../components/OrderedItemsCards';
@@ -9,17 +9,18 @@ import styled from 'styled-components';
 const Container = styled.div`
     margin: 0px;
     padding: 0px;
-    height: 100vh; /* 高さを100%に設定 */
-    background-image: url('/images/en.png');  背景画像のパスを指定 
-    background-size: cover; /* 画像をコンテナ全体に拡大縮小 */
-    background-position: center; /* 画像を中央に配置 */
-    background-repeat: no-repeat; /* 画像を繰り返さない */
+    min-height: 100vh; 
+    background-image: url('/images/en.png');  /* 背景画像のパスを指定 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border: 5px solid #000;
 `;
 
 const Order = () => {
     const { t, i18n } = useTranslation();
     const location = useLocation();
+    const navigate = useNavigate();
     const { menuCounts, menuData } = location.state || {};
 
     const orderedItems = menuData.filter(item => menuCounts[item.id] > 0);
@@ -35,7 +36,26 @@ const Order = () => {
 
     return (
         <>
-
+            {/* 戻るボタン */}
+            <button
+                style={{
+                    position: 'fixed',
+                    top: 20,
+                    left: 20,
+                    zIndex: 2000,
+                    padding: '10px 20px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    background: '#444',
+                    color: '#fff',
+                    opacity: 0.8,
+                    fontWeight: 'bold',
+                    cursor: 'pointer'
+                }}
+                onClick={() => navigate('/menu', { state: { menuCounts, menuData } })}
+            >
+                ← {t('order.back')}
+            </button>
             <Container>
 
                 {/* 伝票のようなメニュー名リスト */}
@@ -47,7 +67,6 @@ const Order = () => {
                 ) : (
                     <p>{t('order.empty')}</p>
                 )}
-
             </Container>
             <Footer />
         </>
