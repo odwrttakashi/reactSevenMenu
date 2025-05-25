@@ -73,9 +73,11 @@ const Home = () => {
         <>
             <HomeContainer>
                 <LanguageContainer>
-                    <HomeButton onClick={() => handleSelect('/menu?lang=ja')}>日本語</HomeButton>
-                    <HomeButton onClick={() => handleSelect('/menu?lang=en')}>English</HomeButton>
+                    <HomeButton onClick={() => handleSelect('/menu?lang=zh')}>中文</HomeButton>
                     <HomeButton onClick={() => handleSelect('/menu?lang=ko')}>한국어</HomeButton>
+                    <HomeButton onClick={() => handleSelect('/menu?lang=en')}>English</HomeButton>
+                    <HomeButton onClick={() => handleSelect('/menu?lang=ja')}>日本語</HomeButton>
+
                 </LanguageContainer>
 
             </HomeContainer>

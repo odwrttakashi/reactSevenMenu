@@ -66,7 +66,7 @@ const Price = styled.p`
     font-weight: bold;
 `;
 
-const MenuItem = ({ name, image, price, count, onIncrement, onDecrement }) => {
+const MenuItem = ({ name, image, price, onIncrement, onDecrement }) => {
     return (
         <Container>
             <Image src={image} alt={name} />

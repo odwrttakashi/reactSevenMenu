@@ -162,10 +162,13 @@ const CountBadge = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 18px;      // 少し小さめに調整
     font-weight: bold;
     z-index: 2;
     box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    line-height: 1;       // 追加：上下中央に寄せる
+    padding: 0;           // 追加：余白をなくす
+    text-align: center;   // 追加：中央揃え
 `;
 
 const Menu = () => {
