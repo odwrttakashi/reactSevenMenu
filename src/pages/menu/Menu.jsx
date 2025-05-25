@@ -23,7 +23,7 @@ const CategoryGrid = styled.div`
     background-image: url('/images/category/catebk1.png');
     background-size: cover;
     background-position: center;
-    border-top: 2.2px solid #000; /* 上辺だけ黒の枠を追加 */
+    
     border-bottom: 2.2px solid #000; /* 上辺だけ黒の枠を追加 */
     
     /* スクロールバー非表示（主要ブラウザ対応） */
@@ -133,7 +133,7 @@ const WhiteOverlay = styled.div`
 const LanguageDisplay = styled.div`
     position: fixed;
     top: 55px;
-    right: 16px;
+    right: 82%;
     z-index: 1200;
     color: #888;
     font-size: 12px;
@@ -208,6 +208,7 @@ const Menu = () => {
 
     return (
         <MenuContainer>
+
             <LanguageDisplay>
                 [{i18n.language.toUpperCase()}]
             </LanguageDisplay>

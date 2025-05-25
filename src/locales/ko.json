@@ -69,9 +69,10 @@
         "onigiri": "매실/명란/연어 주먹밥",
         "kaisenonigiri": "해산물 주먹밥",
         "Ochazuke": "매실/명란/연어 오차즈케",
-        "zousui": "게죽/닭죽",
+        "zousui": "게죽",
+        "torizousui": "닭죽",
         "oyakodon": "오야코동",
-        "aosamiso": "아오사/조개/나메코 된장국",
+        "misosoup": "아오사/조개/나메코 된장국",
         "kinakomoti": "콩가루 떡",
         "pancake": "팬케이크",
         "ice": "바닐라 아이스크림/말차 아이스크림/유자"
@@ -83,7 +84,7 @@
         "Create": "창작",
         "Grilled": "구이",
         "Fried": "튀김",
-        "Rice/Soup": "ご밥류",
+        "Rice/Soup": "식사 / 국",
         "Sweets": "디저트"
     },
     "buttons": {
