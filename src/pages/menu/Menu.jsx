@@ -5,16 +5,18 @@ import MenuItem from '../../components/MenuItem';
 import menuData from '../../data/menuData';
 import styled from 'styled-components';
 import Footer from '../../components/Footer';
+import { RiShoppingCartLine } from "react-icons/ri";
+
 const CategoryGrid = styled.div`
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    gap: 10px;
+    gap: 8px;
     margin-top: 8px;
     position: fixed;
-    top: 67px;
+    top: 68px;
     left: 0;
     right: 0;
     background-color: white;
@@ -24,7 +26,7 @@ const CategoryGrid = styled.div`
     background-size: cover;
     background-position: center;
     
-    border-bottom: 2.2px solid #000; /* 上辺だけ黒の枠を追加 */
+    box-shadow: 0 5px 6px rgba(0,0,0,0.18);
     
     /* スクロールバー非表示（主要ブラウザ対応） */
     scrollbar-width: none; /* Firefox */
@@ -55,25 +57,7 @@ const CategoryButton = styled.button`
         color: #000;
     }
 `;
-const FixedOrderButton = styled.div`
-    position: fixed; /* 画面に固定 */
-    top: 20px; /* 画面下からの距離 */
-    right: 20px; /* 画面右からの距離 */
-    z-index: 1000; /* 他の要素より前面に表示 */
 
-    button {
-        padding: 10px 20px; /* ボタンのパディング */
-        font-size: 20px; /* フォントサイズを200%に拡大 */
-
-        color: white; /* テキストの色 */
-        border: none; /* ボーダーを削除 */
-        border-radius: 20px; /* ボタンを角丸にする */
-        cursor: pointer; /* カーソルをポインタに変更 */
-        background-image: url('/images/category/category5.jpg'); /* ボタンに画像を設定 */
-        background-size: cover;
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* ボタンに影を追加 */
-    }
-`;
 
 const HomeButton = styled.button`
     position: fixed; /* 画面に固定 */
@@ -108,8 +92,8 @@ const HomeButton = styled.button`
 `;
 
 const MenuContainer = styled.div`
-    
-    background-image: url('/images/en.png'); /* 背景画像を設定 */
+    /* background-image: url('/images/en.png'); 背景画像を設定 */
+   background-color: #f0e6db; /* 背景色を薄いベージュに設定 */
     
     background-size: cover; /* 画像を全体に拡大 */
     background-position: top; /* 画像をページの最上部に配置 */
@@ -129,13 +113,29 @@ const WhiteOverlay = styled.div`
     background-color: white; /* 背景色を白に設定 */
     z-index: 1; /* カテゴリーボックスより前面に表示 */
 `;
+const TileOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-image: url('/images/category/category4.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+
+    /* ブラー効果を追加 */
+    filter: blur(0px);
+    opacity: 0.85; /* うっすら感を調整 */
+    pointer-events: none; /* クリックを透過 */
+`;
 
 const LanguageDisplay = styled.div`
     position: fixed;
     top: 55px;
     right: 82%;
     z-index: 1200;
-    color: #888;
+    color: #fff;
     font-size: 12px;
     font-weight: bold;
     opacity: 0.9;
@@ -148,27 +148,62 @@ const MenuPositionStart = styled.div`
     gap: 20px;
     justify-content: center;
     margin-top: 130px; /* カテゴリーボックスの高さ＋余白 */
-    padding: 20px;
+    padding: 0 20px; /* 左右の余白を追加 */
+    width: 100%;        
+    box-sizing: border-box;
 `;
 const CountBadge = styled.div`
     position: absolute;
     top: 8px;
     right: 5px;
-    background: rgba(252, 252, 252, 0.85);
-    color: #333;
+    background: rgba(202,25,25, 0.85);
+    color: #fff;
     border-radius: 50%;
     min-width: 28px;
-    height: 28px;
+    height: 26px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;      // 少し小さめに調整
+    align-items: flex-start;      // 上寄せ
+    justify-content: center;      // 横は中央
+    font-size: 19px;
     font-weight: bold;
-    z-index: 2;
+    z-index: 0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-    line-height: 1;       // 追加：上下中央に寄せる
-    padding: 0;           // 追加：余白をなくす
-    text-align: center;   // 追加：中央揃え
+    line-height: 1;
+    padding-top: 2px;             // 上に少し余白を追加
+    text-align: center;
+`;
+
+const OrderCountBadge = styled.div`
+    position: absolute;
+    top: -9px;
+    right: -5px;
+    background: rgba( 202,25,25,0.85);
+    color: #fff;
+    border-radius: 50%;
+    min-width: 26px;
+    height: 21px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    line-height: 1;
+    padding-top: 5px;
+    text-align: center;
+    pointer-events: none;
+`;
+
+const BackgroundOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(240, 226, 203, 0.8);
+    z-index: 0;
+    pointer-events: none;
 `;
 
 const Menu = () => {
@@ -213,6 +248,9 @@ const Menu = () => {
         navigate('/order', { state: { menuCounts, menuData, lang: i18n.language } }); // 言語をstateに追加
     };
 
+    // 合計カウントを計算
+    const totalCount = Object.values(menuCounts).reduce((sum, v) => sum + v, 0);
+
     return (
         <MenuContainer>
 
@@ -220,7 +258,9 @@ const Menu = () => {
                 [{i18n.language.toUpperCase()}]
             </LanguageDisplay>
             {/* 上部の白色オーバーレイ */}
-            <WhiteOverlay />
+            <WhiteOverlay />/* タイル状のオーバーレイ */
+            <TileOverlay />
+            <BackgroundOverlay />
 
             {/* ジャンル選択ボタン */}
             <CategoryGrid>
@@ -255,27 +295,38 @@ const Menu = () => {
             </MenuPositionStart>
 
             {/* 固定されたオーダーボタン */}
-            <FixedOrderButton>
+            <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
                 <button
                     onClick={handleOrder}
                     style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#4CAF50',
+                        padding: '10px 24px',
+                        fontSize: '20px',
                         color: 'white',
+                        background: '#444',
                         border: 'none',
-                        borderRadius: '5px',
+                        borderRadius: '24px',
                         cursor: 'pointer',
+                        position: 'relative',
+                        opacity: 0.92,
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.18)',
+                        fontWeight: 'bold',
+                        letterSpacing: '1px'
                     }}
                 >
-                    🛒{t('buttons.order')}
+                    <RiShoppingCartLine style={{ marginRight: 5, fontSize: 24 }} />
+                    {t('buttons.order')}
+                    {totalCount > 0 && (
+                        <OrderCountBadge>{totalCount}</OrderCountBadge>
+                    )}
                 </button>
-            </FixedOrderButton>
+            </div>
+
 
             {/* ホーム画面へ遷移するボタン */}
             <HomeButton onClick={() => navigate('/')}></HomeButton>
 
             <Footer />
-        </MenuContainer>
+        </MenuContainer >
 
     );
 };

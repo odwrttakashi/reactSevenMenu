@@ -94,6 +94,6 @@
         "title": "Order List",
         "quantity": "quantity",
         "empty": "No orders available",
-        "back": "Back to Menu"
+        "back": "Back"
     }
 }
